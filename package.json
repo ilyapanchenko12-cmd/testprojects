@@ -1,7 +1,16 @@
 {
-  "name": "crm-frontend",
-  "version": "0.1.0",
+  "name": "d7-crm",
+  "version": "1.0.0",
   "private": true,
+  "description": "D7 CRM: дашборд simple_working.html + Express API + Telegram-бот",
+  "scripts": {
+    "start": "npm run start --prefix backend",
+    "dev": "npm run dev --prefix backend",
+    "postinstall": "npm install --prefix backend",
+    "start:react-legacy-demo": "react-scripts start",
+    "build:react-legacy-demo": "react-scripts build",
+    "test": "react-scripts test"
+  },
   "dependencies": {
     "@types/node": "^16.18.0",
     "@types/react": "^18.2.0",
@@ -18,12 +27,6 @@
     "@emotion/styled": "^11.10.0",
     "recharts": "^2.5.0",
     "date-fns": "^2.29.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -42,7 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
-
-
