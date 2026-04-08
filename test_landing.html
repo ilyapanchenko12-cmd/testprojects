@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Landing - Mandarin Stat</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+        
+        function LandingPage({ onShowLogin, onShowRegister }) {
+            return (
+                <div style={{ 
+                    minHeight: '100vh', 
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    fontFamily: 'Arial, sans-serif',
+                    position: 'relative',
+                    overflow: 'hidden'
+                }}>
+                    {/* Header */}
+                    <header style={{ 
+                        background: 'rgba(255, 255, 255, 0.95)', 
+                        backdropFilter: 'blur(10px)',
+                        padding: '15px 0',
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        zIndex: 1000,
+                        boxShadow: '0 2px 20px rgba(0,0,0,0.1)',
+                        borderBottom: '2px solid #ff6b35'
+                    }}>
+                        <div style={{ 
+                            maxWidth: '1200px', 
+                            margin: '0 auto', 
+                            padding: '0 20px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                <div style={{ 
+                                    width: '40px', 
+                                    height: '40px', 
+                                    background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: 'white',
+                                    fontWeight: 'bold',
+                                    fontSize: '18px',
+                                    boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)'
+                                }}>
+                                    m
+                                </div>
+                                <h1 style={{ margin: 0, color: '#2d3436', fontSize: '22px', fontWeight: '700' }}>Mandarin Stat</h1>
+                            </div>
+                            <div style={{ display: 'flex', gap: '15px' }}>
+                                <button 
+                                    onClick={onShowLogin}
+                                    style={{
+                                        background: 'transparent',
+                                        color: '#ff6b35',
+                                        border: '2px solid #ff6b35',
+                                        padding: '10px 20px',
+                                        borderRadius: '25px',
+                                        cursor: 'pointer',
+                                        fontWeight: '500',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                >
+                                    Демо вход
+                                </button>
+                                <button 
+                                    onClick={onShowRegister}
+                                    style={{
+                                        background: 'linear-gradient(135deg, #ff7675 0%, #fd79a8 100%)',
+                                        color: 'white',
+                                        border: 'none',
+                                        padding: '10px 20px',
+                                        borderRadius: '25px',
+                                        cursor: 'pointer',
+                                        fontWeight: '500',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                >
+                                    Демо регистрация
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Hero Section */}
+                    <section style={{
+                        padding: '120px 20px 80px',
+                        textAlign: 'center',
+                        position: 'relative',
+                        zIndex: 2
+                    }}>
+                        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                            <h1 style={{
+                                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                                fontWeight: '800',
+                                color: 'white',
+                                marginBottom: '20px',
+                                textShadow: '0 4px 20px rgba(0,0,0,0.3)',
+                                lineHeight: '1.2'
+                            }}>
+                                Революционная CRM для арбитражных команд
+                            </h1>
+                            <p style={{
+                                fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+                                color: 'rgba(255,255,255,0.9)',
+                                marginBottom: '40px',
+                                maxWidth: '600px',
+                                margin: '0 auto 40px',
+                                lineHeight: '1.6'
+                            }}>
+                                Управляйте рекламными кампаниями, отслеживайте конверсии и масштабируйте бизнес с помощью умной аналитики
+                            </p>
+                            <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                                <button 
+                                    onClick={onShowLogin}
+                                    style={{
+                                        background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+                                        color: 'white',
+                                        border: 'none',
+                                        padding: '15px 30px',
+                                        borderRadius: '50px',
+                                        cursor: 'pointer',
+                                        fontWeight: '600',
+                                        fontSize: '16px',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 8px 25px rgba(255, 107, 53, 0.4)'
+                                    }}
+                                >
+                                    🚀 Начать работу
+                                </button>
+                                <button 
+                                    onClick={onShowRegister}
+                                    style={{
+                                        background: 'rgba(255,255,255,0.2)',
+                                        color: 'white',
+                                        border: '2px solid rgba(255,255,255,0.3)',
+                                        padding: '15px 30px',
+                                        borderRadius: '50px',
+                                        cursor: 'pointer',
+                                        fontWeight: '600',
+                                        fontSize: '16px',
+                                        transition: 'all 0.3s ease',
+                                        backdropFilter: 'blur(10px)'
+                                    }}
+                                >
+                                    📊 Демо версия
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Features Section */}
+                    <section style={{
+                        padding: '80px 20px',
+                        background: 'rgba(255,255,255,0.1)',
+                        backdropFilter: 'blur(10px)',
+                        position: 'relative',
+                        zIndex: 2
+                    }}>
+                        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                            <h2 style={{
+                                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                                fontWeight: '700',
+                                color: 'white',
+                                textAlign: 'center',
+                                marginBottom: '60px',
+                                textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                            }}>
+                                Почему выбирают нас?
+                            </h2>
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                                gap: '30px'
+                            }}>
+                                {[
+                                    {
+                                        icon: '📊',
+                                        title: 'Умная аналитика',
+                                        description: 'Детальная аналитика по всем каналам и кампаниям с прогнозированием результатов'
+                                    },
+                                    {
+                                        icon: '🔗',
+                                        title: 'Управление ссылками',
+                                        description: 'Создавайте и отслеживайте рекламные ссылки с полной статистикой конверсий'
+                                    },
+                                    {
+                                        icon: '👥',
+                                        title: 'Командная работа',
+                                        description: 'Управляйте командой баеров, распределяйте задачи и контролируйте результаты'
+                                    },
+                                    {
+                                        icon: '📱',
+                                        title: 'Мобильный доступ',
+                                        description: 'Полный доступ ко всем функциям с любого устройства в любое время'
+                                    },
+                                    {
+                                        icon: '🛡️',
+                                        title: 'Безопасность данных',
+                                        description: 'Защита ваших данных с помощью современных технологий шифрования'
+                                    },
+                                    {
+                                        icon: '⚡',
+                                        title: 'Быстрая настройка',
+                                        description: 'Начните работу за 5 минут с простой и интуитивной настройкой'
+                                    }
+                                ].map((feature, index) => (
+                                    <div key={index} style={{
+                                        background: 'rgba(255,255,255,0.15)',
+                                        padding: '30px',
+                                        borderRadius: '20px',
+                                        textAlign: 'center',
+                                        backdropFilter: 'blur(10px)',
+                                        border: '1px solid rgba(255,255,255,0.2)',
+                                        transition: 'all 0.3s ease',
+                                        cursor: 'pointer'
+                                    }}>
+                                        <div style={{
+                                            fontSize: '3rem',
+                                            marginBottom: '20px',
+                                            display: 'block'
+                                        }}>
+                                            {feature.icon}
+                                        </div>
+                                        <h3 style={{
+                                            fontSize: '1.5rem',
+                                            fontWeight: '600',
+                                            color: 'white',
+                                            marginBottom: '15px'
+                                        }}>
+                                            {feature.title}
+                                        </h3>
+                                        <p style={{
+                                            color: 'rgba(255,255,255,0.8)',
+                                            lineHeight: '1.6',
+                                            fontSize: '1rem'
+                                        }}>
+                                            {feature.description}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Stats Section */}
+                    <section style={{
+                        padding: '80px 20px',
+                        position: 'relative',
+                        zIndex: 2
+                    }}>
+                        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                            <h2 style={{
+                                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                                fontWeight: '700',
+                                color: 'white',
+                                textAlign: 'center',
+                                marginBottom: '60px',
+                                textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                            }}>
+                                Наши достижения
+                            </h2>
+                            <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                                gap: '30px'
+                            }}>
+                                {[
+                                    { number: '500+', label: 'Активных пользователей' },
+                                    { number: '1M+', label: 'Обработанных заявок' },
+                                    { number: '99.9%', label: 'Время работы системы' },
+                                    { number: '24/7', label: 'Техническая поддержка' }
+                                ].map((stat, index) => (
+                                    <div key={index} style={{
+                                        background: 'rgba(255,255,255,0.1)',
+                                        padding: '40px 20px',
+                                        borderRadius: '20px',
+                                        textAlign: 'center',
+                                        backdropFilter: 'blur(10px)',
+                                        border: '1px solid rgba(255,255,255,0.2)'
+                                    }}>
+                                        <div style={{
+                                            fontSize: '3rem',
+                                            fontWeight: '800',
+                                            color: 'white',
+                                            marginBottom: '10px',
+                                            textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                                        }}>
+                                            {stat.number}
+                                        </div>
+                                        <div style={{
+                                            color: 'rgba(255,255,255,0.8)',
+                                            fontSize: '1.1rem',
+                                            fontWeight: '500'
+                                        }}>
+                                            {stat.label}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* CTA Section */}
+                    <section style={{
+                        padding: '80px 20px',
+                        background: 'rgba(255,255,255,0.1)',
+                        backdropFilter: 'blur(10px)',
+                        position: 'relative',
+                        zIndex: 2
+                    }}>
+                        <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+                            <h2 style={{
+                                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                                fontWeight: '700',
+                                color: 'white',
+                                marginBottom: '30px',
+                                textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                            }}>
+                                Готовы начать?
+                            </h2>
+                            <p style={{
+                                fontSize: '1.2rem',
+                                color: 'rgba(255,255,255,0.9)',
+                                marginBottom: '40px',
+                                lineHeight: '1.6'
+                            }}>
+                                Присоединяйтесь к тысячам арбитражников, которые уже используют Mandarin Stat для масштабирования своего бизнеса
+                            </p>
+                            <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                                <button 
+                                    onClick={onShowLogin}
+                                    style={{
+                                        background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+                                        color: 'white',
+                                        border: 'none',
+                                        padding: '18px 40px',
+                                        borderRadius: '50px',
+                                        cursor: 'pointer',
+                                        fontWeight: '600',
+                                        fontSize: '18px',
+                                        transition: 'all 0.3s ease',
+                                        boxShadow: '0 8px 25px rgba(255, 107, 53, 0.4)'
+                                    }}
+                                >
+                                    🚀 Начать бесплатно
+                                </button>
+                                <button 
+                                    onClick={onShowRegister}
+                                    style={{
+                                        background: 'rgba(255,255,255,0.2)',
+                                        color: 'white',
+                                        border: '2px solid rgba(255,255,255,0.3)',
+                                        padding: '18px 40px',
+                                        borderRadius: '50px',
+                                        cursor: 'pointer',
+                                        fontWeight: '600',
+                                        fontSize: '18px',
+                                        transition: 'all 0.3s ease',
+                                        backdropFilter: 'blur(10px)'
+                                    }}
+                                >
+                                    📞 Связаться с нами
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer style={{
+                        padding: '40px 20px',
+                        background: 'rgba(0,0,0,0.2)',
+                        backdropFilter: 'blur(10px)',
+                        position: 'relative',
+                        zIndex: 2
+                    }}>
+                        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '12px',
+                                marginBottom: '20px'
+                            }}>
+                                <div style={{ 
+                                    width: '40px', 
+                                    height: '40px', 
+                                    background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: 'white',
+                                    fontWeight: 'bold',
+                                    fontSize: '18px',
+                                    boxShadow: '0 4px 12px rgba(255, 107, 53, 0.3)'
+                                }}>
+                                    m
+                                </div>
+                                <h3 style={{ margin: 0, color: 'white', fontSize: '24px', fontWeight: '700' }}>Mandarin Stat</h3>
+                            </div>
+                            <p style={{
+                                color: 'rgba(255,255,255,0.7)',
+                                marginBottom: '20px',
+                                fontSize: '1rem'
+                            }}>
+                                Революционная CRM система для арбитражных команд
+                            </p>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                gap: '30px',
+                                flexWrap: 'wrap',
+                                marginBottom: '20px'
+                            }}>
+                                <a href="#" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '14px' }}>Политика конфиденциальности</a>
+                                <a href="#" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '14px' }}>Условия использования</a>
+                                <a href="#" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', fontSize: '14px' }}>Поддержка</a>
+                            </div>
+                            <p style={{
+                                color: 'rgba(255,255,255,0.5)',
+                                fontSize: '12px',
+                                margin: 0
+                            }}>
+                                © 2024 Mandarin Stat. Все права защищены.
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        function App() {
+            const [user, setUser] = useState(null);
+            const [showLanding, setShowLanding] = useState(true);
+            const [showLogin, setShowLogin] = useState(false);
+            const [showRegister, setShowRegister] = useState(false);
+            
+            const handleLogin = (userData) => {
+                setUser(userData);
+                setShowLanding(false);
+                setShowLogin(false);
+            };
+            
+            const handleLogout = () => {
+                setUser(null);
+                setShowLanding(true);
+            };
+            
+            const handleShowLogin = () => {
+                setShowLogin(true);
+                setShowRegister(false);
+                setShowLanding(false);
+            };
+            
+            const handleShowRegister = () => {
+                setShowRegister(true);
+                setShowLogin(false);
+                setShowLanding(false);
+            };
+            
+            const handleBackToLanding = () => {
+                setShowLanding(true);
+                setShowLogin(false);
+                setShowRegister(false);
+            };
+            
+            if (user) {
+                return <div>Dashboard будет здесь</div>;
+            }
+            
+            if (showLogin) {
+                return (
+                    <div>
+                        <div style={{ 
+                            position: 'fixed', 
+                            top: '20px', 
+                            left: '20px', 
+                            zIndex: 1000 
+                        }}>
+                            <button 
+                                onClick={handleBackToLanding}
+                                style={{
+                                    background: 'rgba(255,255,255,0.9)',
+                                    border: 'none',
+                                    padding: '10px 15px',
+                                    borderRadius: '8px',
+                                    cursor: 'pointer',
+                                    fontSize: '14px',
+                                    fontWeight: '500'
+                                }}
+                            >
+                                ← Назад к лендингу
+                            </button>
+                        </div>
+                        <div style={{ padding: '100px 20px', textAlign: 'center' }}>
+                            <h2>Форма входа</h2>
+                            <p>Здесь будет форма входа</p>
+                        </div>
+                    </div>
+                );
+            }
+            
+            if (showRegister) {
+                return (
+                    <div>
+                        <div style={{ 
+                            position: 'fixed', 
+                            top: '20px', 
+                            left: '20px', 
+                            zIndex: 1000 
+                        }}>
+                            <button 
+                                onClick={handleBackToLanding}
+                                style={{
+                                    background: 'rgba(255,255,255,0.9)',
+                                    border: 'none',
+                                    padding: '10px 15px',
+                                    borderRadius: '8px',
+                                    cursor: 'pointer',
+                                    fontSize: '14px',
+                                    fontWeight: '500'
+                                }}
+                            >
+                                ← Назад к лендингу
+                            </button>
+                        </div>
+                        <div style={{ padding: '100px 20px', textAlign: 'center' }}>
+                            <h2>Форма регистрации</h2>
+                            <p>Здесь будет форма регистрации</p>
+                        </div>
+                    </div>
+                );
+            }
+            
+            return <LandingPage onShowLogin={handleShowLogin} onShowRegister={handleShowRegister} />;
+        }
+        
+        // Инициализация приложения
+        console.log('Initializing test app...');
+        const rootElement = document.getElementById('root');
+        if (rootElement) {
+            try {
+                ReactDOM.render(<App />, rootElement);
+                console.log('Test app rendered successfully');
+            } catch (error) {
+                console.error('Error rendering test app:', error);
+                rootElement.innerHTML = '<div style="padding: 20px; color: red;">Ошибка загрузки приложения: ' + error.message + '</div>';
+            }
+        } else {
+            console.error('Root element not found');
+        }
+    </script>
+</body>
+</html>

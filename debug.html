@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Mandarin Stat</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #e55a2b;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+        
+        function LoginForm({ onLogin }) {
+            const [email, setEmail] = useState('');
+            const [password, setPassword] = useState('');
+            const [error, setError] = useState('');
+            
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                
+                // Проверяем вход для баера
+                if (email === 'buyer@example.com' && password === 'buyer123') {
+                    const userData = {
+                        id: '2',
+                        email: 'buyer@example.com',
+                        name: 'Алексей Медиабаер',
+                        role: 'MEDIA_BUYER',
+                        teamId: 'team1'
+                    };
+                    onLogin(userData);
+                }
+                // Проверяем вход для овнера
+                else if (email === 'owner@example.com' && password === 'owner123') {
+                    const userData = {
+                        id: '1',
+                        email: 'owner@example.com',
+                        name: 'Илья Панченко',
+                        role: 'OWNER',
+                        createdAt: new Date('2024-01-01')
+                    };
+                    onLogin(userData);
+                } else {
+                    setError('Неверный email или пароль');
+                }
+            };
+            
+            return (
+                <div className="container">
+                    <h2>Вход в систему</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div style={{ marginBottom: '15px' }}>
+                            <label>Email:</label><br/>
+                            <input 
+                                type="email" 
+                                value={email} 
+                                onChange={(e) => setEmail(e.target.value)}
+                                style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+                                required
+                            />
+                        </div>
+                        <div style={{ marginBottom: '15px' }}>
+                            <label>Пароль:</label><br/>
+                            <input 
+                                type="password" 
+                                value={password} 
+                                onChange={(e) => setPassword(e.target.value)}
+                                style={{ width: '100%', padding: '8px', marginTop: '5px' }}
+                                required
+                            />
+                        </div>
+                        {error && <div style={{ color: 'red', marginBottom: '15px' }}>{error}</div>}
+                        <button type="submit" className="btn">Войти</button>
+                    </form>
+                    
+                    <div style={{ marginTop: '20px', padding: '10px', background: '#f0f0f0', borderRadius: '5px' }}>
+                        <strong>Демо доступы:</strong><br/>
+                        <strong>Баер:</strong> buyer@example.com / buyer123<br/>
+                        <strong>Овнер:</strong> owner@example.com / owner123
+                    </div>
+                </div>
+            );
+        }
+        
+        function Dashboard({ user, onLogout }) {
+            const [activeTab, setActiveTab] = useState('dashboard');
+            
+            const getAvailableTabs = () => {
+                if (user.role === 'MEDIA_BUYER') {
+                    return [
+                        { id: 'personal-stats', name: 'Моя статистика', icon: '👤' },
+                        { id: 'create-link', name: 'Создать ссылку', icon: '🔗' }
+                    ];
+                } else if (user.role === 'OWNER') {
+                    return [
+                        { id: 'dashboard', name: 'Дашборд', icon: '📊' },
+                        { id: 'stats', name: 'Статистика', icon: '📈' },
+                        { id: 'teams', name: 'Команды', icon: '👥' },
+                        { id: 'channels', name: 'Каналы', icon: '📺' },
+                        { id: 'users', name: 'Пользователи', icon: '👤' }
+                    ];
+                }
+                return [];
+            };
+            
+            const renderTabContent = () => {
+                switch (activeTab) {
+                    case 'dashboard':
+                        return (
+                            <div>
+                                <h2>Дашборд</h2>
+                                <p>Добро пожаловать в систему, {user.name}!</p>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginTop: '20px' }}>
+                                    <div style={{ background: '#ff7675', color: 'white', padding: '20px', borderRadius: '10px', textAlign: 'center' }}>
+                                        <h3>Заявки</h3>
+                                        <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>1,181</div>
+                                    </div>
+                                    <div style={{ background: '#74b9ff', color: 'white', padding: '20px', borderRadius: '10px', textAlign: 'center' }}>
+                                        <h3>Подписки</h3>
+                                        <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>1,181</div>
+                                    </div>
+                                    <div style={{ background: '#fd79a8', color: 'white', padding: '20px', borderRadius: '10px', textAlign: 'center' }}>
+                                        <h3>Отписки %</h3>
+                                        <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>5.25%</div>
+                                    </div>
+                                    <div style={{ background: '#00b894', color: 'white', padding: '20px', borderRadius: '10px', textAlign: 'center' }}>
+                                        <h3>Прибыль</h3>
+                                        <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>160,000 грн</div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'personal-stats':
+                        return (
+                            <div>
+                                <h2>Моя статистика</h2>
+                                <p>Ваша персональная статистика как медиа-баера</p>
+                            </div>
+                        );
+                    case 'create-link':
+                        return (
+                            <div>
+                                <h2>Создать ссылку</h2>
+                                <p>Управление рекламными ссылками</p>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginTop: '20px' }}>
+                                    <div style={{ background: '#f8f9fa', padding: '20px', borderRadius: '10px', textAlign: 'center' }}>
+                                        <h3>📊 Управление пикселями</h3>
+                                        <p>Добавляйте и настраивайте пиксели</p>
+                                        <button className="btn">Управлять</button>
+                                    </div>
+                                    <div style={{ background: '#f8f9fa', padding: '20px', borderRadius: '10px', textAlign: 'center' }}>
+                                        <h3>🤖 Управление ботами</h3>
+                                        <p>Настраивайте Telegram ботов</p>
+                                        <button className="btn">Управлять</button>
+                                    </div>
+                                    <div style={{ background: '#f8f9fa', padding: '20px', borderRadius: '10px', textAlign: 'center' }}>
+                                        <h3>🔗 Создать ссылку</h3>
+                                        <p>Создавайте рекламные ссылки</p>
+                                        <button className="btn">Создать</button>
+                                    </div>
+                                    <div style={{ background: '#f8f9fa', padding: '20px', borderRadius: '10px', textAlign: 'center' }}>
+                                        <h3>📈 Аналитика ссылок</h3>
+                                        <p>Отслеживайте эффективность</p>
+                                        <button className="btn">Аналитика</button>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    case 'stats':
+                        return (
+                            <div>
+                                <h2>Статистика</h2>
+                                <p>Общая статистика по системе</p>
+                            </div>
+                        );
+                    case 'teams':
+                        return (
+                            <div>
+                                <h2>Команды</h2>
+                                <p>Управление командами</p>
+                            </div>
+                        );
+                    case 'channels':
+                        return (
+                            <div>
+                                <h2>Каналы</h2>
+                                <p>Управление каналами</p>
+                            </div>
+                        );
+                    case 'users':
+                        return (
+                            <div>
+                                <h2>Пользователи</h2>
+                                <p>Управление пользователями</p>
+                            </div>
+                        );
+                    default:
+                        return <div>Неизвестная вкладка</div>;
+                }
+            };
+            
+            return (
+                <div className="container">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                        <h1>Mandarin Stat - {user.name}</h1>
+                        <button onClick={onLogout} className="btn">Выйти</button>
+                    </div>
+                    
+                    <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
+                        {getAvailableTabs().map(tab => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className="btn"
+                                style={{ 
+                                    background: activeTab === tab.id ? '#e55a2b' : '#ff6b35',
+                                    opacity: activeTab === tab.id ? 1 : 0.8
+                                }}
+                            >
+                                {tab.icon} {tab.name}
+                            </button>
+                        ))}
+                    </div>
+                    
+                    <div style={{ background: '#f8f9fa', padding: '20px', borderRadius: '10px' }}>
+                        {renderTabContent()}
+                    </div>
+                </div>
+            );
+        }
+        
+        function App() {
+            const [user, setUser] = useState(null);
+            
+            const handleLogin = (userData) => {
+                setUser(userData);
+            };
+            
+            const handleLogout = () => {
+                setUser(null);
+            };
+            
+            if (user) {
+                return <Dashboard user={user} onLogout={handleLogout} />;
+            }
+            
+            return <LoginForm onLogin={handleLogin} />;
+        }
+        
+        // Инициализация приложения
+        console.log('Initializing debug app...');
+        const rootElement = document.getElementById('root');
+        if (rootElement) {
+            try {
+                ReactDOM.render(<App />, rootElement);
+                console.log('Debug app rendered successfully');
+            } catch (error) {
+                console.error('Error rendering debug app:', error);
+                rootElement.innerHTML = '<div style="padding: 20px; color: red;">Ошибка загрузки приложения: ' + error.message + '</div>';
+            }
+        } else {
+            console.error('Root element not found');
+        }
+    </script>
+</body>
+</html>
