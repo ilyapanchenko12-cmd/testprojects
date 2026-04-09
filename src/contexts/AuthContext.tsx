@@ -15,8 +15,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const DEMO_USERS: User[] = [
   {
     id: '1',
-    email: 'ilyapanchenko12@gmail.com',
-    name: 'Илья Панченко',
+    email: 'admin@example.com',
+    name: 'Админ',
     role: UserRole.OWNER,
     createdAt: new Date('2024-01-01')
   },
@@ -49,7 +49,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     // Демо логика входа
     const foundUser = DEMO_USERS.find(user => 
       user.email === credentials.email && 
-      ((user.email === 'ilyapanchenko12@gmail.com' && credentials.password === 'kyrakk1005') ||
+      ((user.email === 'admin@example.com' && credentials.password === 'admin123') ||
        (user.email === 'buyer@example.com' && credentials.password === 'buyer123'))
     );
     

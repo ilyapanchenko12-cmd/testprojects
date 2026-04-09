@@ -7,7 +7,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, '..', 'data');
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
-const dbPath = process.env.SQLITE_PATH || path.join(dataDir, 'd7-crm.sqlite');
+const sqliteFromEnv = String(process.env.SQLITE_PATH || '').trim();
+if (process.env.NODE_ENV === 'production' && !sqliteFromEnv) {
+    throw new Error('SQLITE_PATH is required in production to avoid ephemeral DB resets');
+}
+const dbPath = sqliteFromEnv || path.join(dataDir, 'd7-crm.sqlite');
 export const db = new Database(dbPath);
 
 db.exec(`

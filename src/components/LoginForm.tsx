@@ -98,10 +98,10 @@ const LoginForm: React.FC = () => {
           
           <Box sx={{ mt: 2 }}>
             <Typography variant="body2" color="text.secondary" align="center" gutterBottom>
-              Демо доступы:
+              Тестовые доступы:
             </Typography>
             <Typography variant="body2" color="text.secondary" align="center">
-              <strong>Админ:</strong> ilyapanchenko12@gmail.com / kyrakk1005
+              <strong>Админ:</strong> admin@example.com / admin123
             </Typography>
             <Typography variant="body2" color="text.secondary" align="center">
               <strong>Баер:</strong> buyer@example.com / buyer123

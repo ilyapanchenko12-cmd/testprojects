@@ -1496,16 +1496,7 @@
         }
 
         function seedAccounts() {
-            return [
-                {
-                    id: uid(),
-                    login: 'ilyapanchenko12@gmail.com',
-                    password: 'd7dreamteamintheworld',
-                    name: 'Ilya Panchenko',
-                    role: ROLES.ADMIN,
-                    created_at: new Date().toISOString()
-                }
-            ];
+            return [];
         }
 
         function loadAccounts() {
@@ -1621,11 +1612,7 @@
                                 {loading ? 'Вход...' : 'Войти'}
                             </button>
                         </form>
-                        <div className="demo-hint">
-                            <strong>Доступ:</strong>
-                            <br />Админ: <strong>ilyapanchenko12@gmail.com</strong>
-                            <br />Пароль: <strong>d7dreamteamintheworld</strong>
-                        </div>
+                        <div className="demo-hint">Используйте рабочие учётные данные, выданные администратором.</div>
                     </div>
                 </div>
             );

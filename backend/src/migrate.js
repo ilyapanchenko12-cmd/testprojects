@@ -52,13 +52,16 @@ export function runMigrations() {
       updated_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
   `);
-    db.prepare(
-        `INSERT INTO crm_users (email, password, role, name, created_at, updated_at)
-         VALUES (?, ?, 'ADMIN', 'Ilya Panchenko', datetime('now'), datetime('now'))
-         ON CONFLICT(email) DO UPDATE SET
-           password = excluded.password,
-           role = 'ADMIN',
-           name = excluded.name,
-           updated_at = datetime('now')`
-    ).run('ilyapanchenko12@gmail.com', 'd7dreamteamintheworld');
+    const seedEmail = String(process.env.CRM_SEED_ADMIN_EMAIL || '').trim().toLowerCase();
+    const seedPassword = String(process.env.CRM_SEED_ADMIN_PASSWORD || '').trim();
+    const seedName = String(process.env.CRM_SEED_ADMIN_NAME || 'Admin').trim();
+
+    // Optional one-time bootstrap admin. Never overwrite existing users.
+    if (seedEmail && seedPassword) {
+        db.prepare(
+            `INSERT INTO crm_users (email, password, role, name, created_at, updated_at)
+             VALUES (?, ?, 'ADMIN', ?, datetime('now'), datetime('now'))
+             ON CONFLICT(email) DO NOTHING`
+        ).run(seedEmail, seedPassword, seedName || 'Admin');
+    }
 }

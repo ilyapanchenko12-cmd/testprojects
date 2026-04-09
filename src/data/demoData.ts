@@ -3,8 +3,8 @@ import { User, Team, TelegramChannel, Statistics, Direction, UserRole, AdSlot, P
 export const demoUsers: User[] = [
   {
     id: '1',
-    email: 'ilyapanchenko12@gmail.com',
-    name: 'Илья Панченко',
+    email: 'admin@example.com',
+    name: 'Админ',
     role: UserRole.OWNER,
     createdAt: new Date('2024-01-01')
   },
